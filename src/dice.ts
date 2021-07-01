@@ -4,7 +4,9 @@
  * @description Dice
  */
 
-export class Dice {
+import { IDice } from "./declare";
+
+export class Dice implements IDice {
 
     public static faces(faces: number): Dice {
 
@@ -44,11 +46,16 @@ export class Dice {
         const extendValue: number = Math.floor(randomNumber * range);
         const result: number = extendValue + this._min;
 
-        this.setCurrent(result);
+        this._setCurrent(result);
         return result;
     }
 
-    protected setCurrent(current: number): this {
+    public clone(): Dice {
+
+        return new Dice(this._min, this._max);
+    }
+
+    protected _setCurrent(current: number): this {
 
         this._current = current;
         return this;
