@@ -24,6 +24,21 @@ export class DiceCup {
         }
     }
 
+    public get length(): number {
+        return this._dices.length;
+    }
+
+    public get dices(): IDice[] {
+        return this._dices;
+    }
+
+    public currentSum(): number {
+
+        return this._dices.reduce((previous: number, dice: IDice) => {
+            return previous + dice.current;
+        }, 0);
+    }
+
     public rollAll(): this {
 
         this._dices.forEach((dice: IDice) => {
